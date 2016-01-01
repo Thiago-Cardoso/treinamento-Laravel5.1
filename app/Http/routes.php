@@ -24,6 +24,24 @@ Route::get('/', function()
 //crio um novo router controller
 Route::get('/produtos', 'ProdutoController@lista');
 
+//mostra
+//Route::get('/produtos/mostra', 'ProdutoController@mostra');
+
+//Route::get('/produtos/mostra/{id}', 'ProdutoController@mostra');
+
+
+Route::get('/produtos/mostra/{id}',
+'ProdutoController@mostra')
+->where('id', '[0-9]+');
+
+
+Route::get('/produtos/novo', 'ProdutoController@novo');
+
+Route::post('/produtos/adiciona', 'ProdutoController@adiciona');
+
+Route::get('/produtos/json', 'ProdutoController@listaJson');
+
+Route::get('/produtos/remove/{id}', 'ProdutoController@remove');
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +54,8 @@ Route::get('/produtos', 'ProdutoController@lista');
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+Route::group(['middleware' => 'web'], function() {
+    // Place all your web routes here...(Cut all `Route` which are define in `Route file`, paste here) 
 });
+
+
