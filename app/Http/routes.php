@@ -11,15 +11,27 @@
 |
 */
 
+Route::get('home', 'HomeController@index');
+
+Route::controllers([
+'auth' => 'Auth\AuthController',
+'password' => 'Auth\PasswordController',
+]);
+
+Route::get('/login', 'LoginController@login');
+
 Route::get('/', function () {
     return '<h1>Primeira logica com o laravel</h1>';
 });
 
-
+/*
 Route::get('/', function()
 {
-	return '<h1>Outra lógica com Laravel</h1>';
+	//return '<h1>Outra lógica com Laravel</h1>';
 });
+*/
+
+Route::get('/', 'ProdutoController@lista');
 
 //crio um novo router controller
 Route::get('/produtos', 'ProdutoController@lista');
@@ -41,7 +53,12 @@ Route::post('/produtos/adiciona', 'ProdutoController@adiciona');
 
 Route::get('/produtos/json', 'ProdutoController@listaJson');
 
-Route::get('/produtos/remove/{id}', 'ProdutoController@remove');
+//Route::get('/produtos/remove/{id}', 'ProdutoController@remove');
+
+Route::get('/produtos/remove/{id}', [
+	'middleware' => 'nosso-middleware',
+	'uses' => 'ProdutoController@remove'
+]);
 
 /*
 |--------------------------------------------------------------------------
