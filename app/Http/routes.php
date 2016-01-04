@@ -51,6 +51,10 @@ Route::get('/produtos/novo', 'ProdutoController@novo');
 
 Route::post('/produtos/adiciona', 'ProdutoController@adiciona');
 
+Route::post('/produtos/alterar/{id}','ProdutoController@alterar');
+
+Route::get('/produtos/edit/{id}','ProdutoController@edit');
+
 Route::get('/produtos/json', 'ProdutoController@listaJson');
 
 //Route::get('/produtos/remove/{id}', 'ProdutoController@remove');
